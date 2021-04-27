@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/test_client.dir/test_client.cc.o  -o test_client libbase_lib.a 

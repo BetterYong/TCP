@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbase_lib.a  CMakeFiles/base_lib.dir/ip_address.cc.o CMakeFiles/base_lib.dir/socket_address.cc.o
+/usr/bin/ranlib libbase_lib.a
