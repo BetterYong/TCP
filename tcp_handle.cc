@@ -46,7 +46,7 @@ MockEndpoint::~MockEndpoint(){
 }
 void MockEndpoint::OnRegistration(basic::EpollServer* eps, int fd, int event_mask){}
 void MockEndpoint::OnModification(int fd, int event_mask){}
-void MockEndpoint::OnEvent(int fd, basic::EpollEvent* event){//读写事件
+void MockEndpoint::OnEvent(int fd, basic::EpollEvent* event){//MockEndpoint读写事件
     if(event->in_events & EPOLLIN){
         OnReadEvent(fd);
     }    
@@ -60,6 +60,7 @@ void MockEndpoint::OnShutdown(basic::EpollServer* eps, int fd){
     Close();
     DeleteSelf();
 }
+//MockEndpoint::OnEvent事件发生时，执行这个函数
 void MockEndpoint::OnReadEvent(int fd){
     char buffer[kBufferSize];
     while(true){
@@ -126,7 +127,7 @@ int PhysicalSocketServer::Bind(basic::IpAddress &ip,uint16_t port){
     }
     return err;   
 }
-int PhysicalSocketServer::Listen(int backlog){
+int PhysicalSocketServer::Listen(int backlog){//在listen函数中注册了这个事件
     int err=-1;
     if(fd_>=0){
         err = ::listen(fd_, backlog);
@@ -152,7 +153,7 @@ int PhysicalSocketServer::GetSocketOption(int level, int optname, void *optval, 
 }
 void PhysicalSocketServer::OnRegistration(basic::EpollServer* eps, int fd, int event_mask){}
 void PhysicalSocketServer::OnModification(int fd, int event_mask){}
-void PhysicalSocketServer::OnEvent(int fd, basic::EpollEvent* event){
+void PhysicalSocketServer::OnEvent(int fd, basic::EpollEvent* event){//PhysicalSocketServer类中事件发生
     if(event->in_events & EPOLLIN){
         OnReadEvent(fd);
     }        
@@ -163,13 +164,13 @@ void PhysicalSocketServer::OnUnregistration(int fd, bool replaced){
 void PhysicalSocketServer::OnShutdown(basic::EpollServer* eps, int fd){
     Close();
 }
-void PhysicalSocketServer::OnReadEvent(int fd){
+void PhysicalSocketServer::OnReadEvent(int fd){//PhysicalSocketServer发生读写事件时，执行这个函数
     sockaddr_storage addr_storage;
     socklen_t addr_len = sizeof(addr_storage);
     sockaddr* addr = reinterpret_cast<sockaddr*>(&addr_storage);
     int s=-1;
     while((s=Accept(addr,&addr_len))>=0){
-        backend_->CreateEndpoint(context_,s);
+        backend_->CreateEndpoint(context_,s);//创建一个新的endPoint
     }
 }
 int PhysicalSocketServer::Accept(sockaddr* addr,socklen_t* addrlen){

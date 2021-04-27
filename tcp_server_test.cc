@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
     std::cout<<host<<" "<<port<<std::endl;
     std::unique_ptr<basic::MockSocketFactory> socket_facotry(new MockSocketFactory);
     TcpServer server(std::move(socket_facotry));
-    bool success=server.Init(ip,port);
+    bool success=server.Init(ip,port);//init时注册了函数
     if(success){
         while(g_running){
             server.HandleEvent();
