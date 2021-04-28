@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pingcoool/Zouyong/TCP/Data_deal/byte_codec.h
+cstddef
+-
+string
+-
+stdint.h
+-
+net_endian.h
+/home/pingcoool/Zouyong/TCP/Data_deal/net_endian.h
+
+/home/pingcoool/Zouyong/TCP/Data_deal/net_endian.h
+algorithm
+-
+
+/home/pingcoool/Zouyong/TCP/Data_deal/test.cc
+string
+-
+vector
+-
+memory
+-
+iostream
+-
+byte_codec.h
+/home/pingcoool/Zouyong/TCP/Data_deal/byte_codec.h
+

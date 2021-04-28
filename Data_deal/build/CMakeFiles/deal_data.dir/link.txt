@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdeal_data.a  CMakeFiles/deal_data.dir/byte_codec.cc.o
+/usr/bin/ranlib libdeal_data.a

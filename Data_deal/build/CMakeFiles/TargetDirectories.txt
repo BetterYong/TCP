@@ -1,0 +1,4 @@
+/home/pingcoool/Zouyong/TCP/Data_deal/build/CMakeFiles/edit_cache.dir
+/home/pingcoool/Zouyong/TCP/Data_deal/build/CMakeFiles/deal_data.dir
+/home/pingcoool/Zouyong/TCP/Data_deal/build/CMakeFiles/rebuild_cache.dir
+/home/pingcoool/Zouyong/TCP/Data_deal/build/CMakeFiles/test_app.dir
